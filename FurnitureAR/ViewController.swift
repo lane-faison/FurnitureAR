@@ -11,6 +11,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.sceneView.autoenablesDefaultLighting = true
+        
         self.hud = MBProgressHUD.showAdded(to: self.sceneView, animated: true)
         
         self.hud.label.text = "Detecting plane..."
@@ -26,6 +28,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        registerGestureRecognizers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +41,30 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Run the view's session
         sceneView.session.run(configuration)
+    }
+    
+    private func registerGestureRecognizers() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        self.sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc private func tapped(recognizer: UITapGestureRecognizer) {
+        guard let sceneView = recognizer.view as? ARSCNView else { return }
+        
+        let touch = recognizer.location(in: sceneView)
+        print("\(touch.x), \(touch.y)")
+        
+        let hitTestResults = sceneView.hitTest(touch, types: .existingPlane)
+        
+        if let hitTest = hitTestResults.first {
+            guard let chairScene = SCNScene(named: "chair.dae"),
+                let chairNode = chairScene.rootNode.childNode(withName: "chair", recursively: true) else { return }
+            
+            // Gets the position of the touch in the 3D coordinate plane
+            chairNode.position = SCNVector3(hitTest.worldTransform.columns.3.x, hitTest.worldTransform.columns.3.y, hitTest.worldTransform.columns.3.z)
+            
+            self.sceneView.scene.rootNode.addChildNode(chairNode)
+        }
     }
     
     // Fired when a plane is detected

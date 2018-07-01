@@ -15,7 +15,7 @@
 		F6802EEF20E90EF900BEC00C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6802EED20E90EF900BEC00C /* LaunchScreen.storyboard */; };
 		F6802EFA20E911CD00BEC00C /* Neil Woo03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6802EF720E911CD00BEC00C /* Neil Woo03.jpg */; };
 		F6802EFB20E911CD00BEC00C /* NeilFabricPlain008.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6802EF820E911CD00BEC00C /* NeilFabricPlain008.jpg */; };
-		F6802EFC20E911CD00BEC00C /* Armchair 01.dae in Resources */ = {isa = PBXBuildFile; fileRef = F6802EF920E911CD00BEC00C /* Armchair 01.dae */; };
+		F6802EFC20E911CD00BEC00C /* chair.dae in Resources */ = {isa = PBXBuildFile; fileRef = F6802EF920E911CD00BEC00C /* chair.dae */; };
 		F6802F0020E915E700BEC00C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F6802EFE20E915E700BEC00C /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +30,7 @@
 		F6802EF020E90EF900BEC00C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6802EF720E911CD00BEC00C /* Neil Woo03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Neil Woo03.jpg"; sourceTree = "<group>"; };
 		F6802EF820E911CD00BEC00C /* NeilFabricPlain008.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NeilFabricPlain008.jpg; sourceTree = "<group>"; };
-		F6802EF920E911CD00BEC00C /* Armchair 01.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = "Armchair 01.dae"; sourceTree = "<group>"; };
+		F6802EF920E911CD00BEC00C /* chair.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = chair.dae; sourceTree = "<group>"; };
 		F6802EFD20E915E600BEC00C /* FurnitureAR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FurnitureAR-Bridging-Header.h"; sourceTree = "<group>"; };
 		F6802EFE20E915E700BEC00C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		F6802EFF20E915E700BEC00C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		F6802EF620E911AB00BEC00C /* Art */ = {
 			isa = PBXGroup;
 			children = (
-				F6802EF920E911CD00BEC00C /* Armchair 01.dae */,
+				F6802EF920E911CD00BEC00C /* chair.dae */,
 				F6802EF720E911CD00BEC00C /* Neil Woo03.jpg */,
 				F6802EF820E911CD00BEC00C /* NeilFabricPlain008.jpg */,
 			);
@@ -152,7 +152,7 @@
 			files = (
 				F6802EFB20E911CD00BEC00C /* NeilFabricPlain008.jpg in Resources */,
 				F6802EE520E90EF700BEC00C /* art.scnassets in Resources */,
-				F6802EFC20E911CD00BEC00C /* Armchair 01.dae in Resources */,
+				F6802EFC20E911CD00BEC00C /* chair.dae in Resources */,
 				F6802EEF20E90EF900BEC00C /* LaunchScreen.storyboard in Resources */,
 				F6802EFA20E911CD00BEC00C /* Neil Woo03.jpg in Resources */,
 				F6802EEC20E90EF900BEC00C /* Assets.xcassets in Resources */,
