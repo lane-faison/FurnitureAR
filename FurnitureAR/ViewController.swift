@@ -43,30 +43,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
     }
     
-    private func registerGestureRecognizers() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        self.sceneView.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    @objc private func tapped(recognizer: UITapGestureRecognizer) {
-        guard let sceneView = recognizer.view as? ARSCNView else { return }
-        
-        let touch = recognizer.location(in: sceneView)
-        print("\(touch.x), \(touch.y)")
-        
-        let hitTestResults = sceneView.hitTest(touch, types: .existingPlane)
-        
-        if let hitTest = hitTestResults.first {
-            guard let chairScene = SCNScene(named: "chair.dae"),
-                let chairNode = chairScene.rootNode.childNode(withName: "chair", recursively: true) else { return }
-            
-            // Gets the position of the touch in the 3D coordinate plane
-            chairNode.position = SCNVector3(hitTest.worldTransform.columns.3.x, hitTest.worldTransform.columns.3.y, hitTest.worldTransform.columns.3.z)
-            
-            self.sceneView.scene.rootNode.addChildNode(chairNode)
-        }
-    }
-    
     // Fired when a plane is detected
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if anchor is ARPlaneAnchor {
@@ -82,5 +58,56 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Pause the view's session
         sceneView.session.pause()
+    }
+}
+
+// Gesture Recognizers
+extension ViewController {
+    private func registerGestureRecognizers() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        self.sceneView.addGestureRecognizer(tapGestureRecognizer)
+        
+        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinched))
+        self.sceneView.addGestureRecognizer(pinchGestureRecognizer)
+    }
+    
+    @objc private func tapped(recognizer: UITapGestureRecognizer) {
+        guard let sceneView = recognizer.view as? ARSCNView else { return }
+        
+        let touch = recognizer.location(in: sceneView)
+        
+        let hitTestResults = sceneView.hitTest(touch, types: .existingPlane)
+        
+        if let hitTest = hitTestResults.first {
+            guard let chairScene = SCNScene(named: "chair.dae"),
+                let chairNode = chairScene.rootNode.childNode(withName: "chair", recursively: true) else { return }
+            
+            // Gets the position of the touch in the 3D coordinate plane
+            chairNode.position = SCNVector3(hitTest.worldTransform.columns.3.x, hitTest.worldTransform.columns.3.y, hitTest.worldTransform.columns.3.z)
+            
+            self.sceneView.scene.rootNode.addChildNode(chairNode)
+        }
+    }
+    
+    @objc private func pinched(recognizer: UIPinchGestureRecognizer) {
+        if recognizer.state == .changed {
+            guard let sceneView = recognizer.view as? ARSCNView else { return }
+            
+            let touch = recognizer.location(in: sceneView)
+            
+            let hitTestResults = self.sceneView.hitTest(touch, options: nil)
+            
+            if let hitTest = hitTestResults.first {
+                let chairNode = hitTest.node
+                let pinchScaleX = Float(recognizer.scale) * chairNode.scale.x
+                let pinchScaleY = Float(recognizer.scale) * chairNode.scale.y
+                let pinchScaleZ = Float(recognizer.scale) * chairNode.scale.z
+                
+                chairNode.scale = SCNVector3(pinchScaleX, pinchScaleY, pinchScaleZ)
+                
+                recognizer.scale = 1
+            }
+            
+        }
     }
 }
