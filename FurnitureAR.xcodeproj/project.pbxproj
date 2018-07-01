@@ -13,6 +13,10 @@
 		F6802EEA20E90EF700BEC00C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6802EE820E90EF700BEC00C /* Main.storyboard */; };
 		F6802EEC20E90EF900BEC00C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6802EEB20E90EF900BEC00C /* Assets.xcassets */; };
 		F6802EEF20E90EF900BEC00C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6802EED20E90EF900BEC00C /* LaunchScreen.storyboard */; };
+		F6802EFA20E911CD00BEC00C /* Neil Woo03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6802EF720E911CD00BEC00C /* Neil Woo03.jpg */; };
+		F6802EFB20E911CD00BEC00C /* NeilFabricPlain008.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6802EF820E911CD00BEC00C /* NeilFabricPlain008.jpg */; };
+		F6802EFC20E911CD00BEC00C /* Armchair 01.dae in Resources */ = {isa = PBXBuildFile; fileRef = F6802EF920E911CD00BEC00C /* Armchair 01.dae */; };
+		F6802F0020E915E700BEC00C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F6802EFE20E915E700BEC00C /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,12 @@
 		F6802EEB20E90EF900BEC00C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6802EEE20E90EF900BEC00C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6802EF020E90EF900BEC00C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6802EF720E911CD00BEC00C /* Neil Woo03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Neil Woo03.jpg"; sourceTree = "<group>"; };
+		F6802EF820E911CD00BEC00C /* NeilFabricPlain008.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NeilFabricPlain008.jpg; sourceTree = "<group>"; };
+		F6802EF920E911CD00BEC00C /* Armchair 01.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = "Armchair 01.dae"; sourceTree = "<group>"; };
+		F6802EFD20E915E600BEC00C /* FurnitureAR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FurnitureAR-Bridging-Header.h"; sourceTree = "<group>"; };
+		F6802EFE20E915E700BEC00C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		F6802EFF20E915E700BEC00C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +67,28 @@
 			isa = PBXGroup;
 			children = (
 				F6802EE220E90EF700BEC00C /* AppDelegate.swift */,
-				F6802EE420E90EF700BEC00C /* art.scnassets */,
 				F6802EE620E90EF700BEC00C /* ViewController.swift */,
 				F6802EE820E90EF700BEC00C /* Main.storyboard */,
+				F6802EF620E911AB00BEC00C /* Art */,
+				F6802EE420E90EF700BEC00C /* art.scnassets */,
 				F6802EEB20E90EF900BEC00C /* Assets.xcassets */,
 				F6802EED20E90EF900BEC00C /* LaunchScreen.storyboard */,
 				F6802EF020E90EF900BEC00C /* Info.plist */,
+				F6802EFF20E915E700BEC00C /* MBProgressHUD.h */,
+				F6802EFE20E915E700BEC00C /* MBProgressHUD.m */,
+				F6802EFD20E915E600BEC00C /* FurnitureAR-Bridging-Header.h */,
 			);
 			path = FurnitureAR;
+			sourceTree = "<group>";
+		};
+		F6802EF620E911AB00BEC00C /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				F6802EF920E911CD00BEC00C /* Armchair 01.dae */,
+				F6802EF720E911CD00BEC00C /* Neil Woo03.jpg */,
+				F6802EF820E911CD00BEC00C /* NeilFabricPlain008.jpg */,
+			);
+			path = Art;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +123,7 @@
 				TargetAttributes = {
 					F6802EDE20E90EF700BEC00C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -125,8 +150,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6802EFB20E911CD00BEC00C /* NeilFabricPlain008.jpg in Resources */,
 				F6802EE520E90EF700BEC00C /* art.scnassets in Resources */,
+				F6802EFC20E911CD00BEC00C /* Armchair 01.dae in Resources */,
 				F6802EEF20E90EF900BEC00C /* LaunchScreen.storyboard in Resources */,
+				F6802EFA20E911CD00BEC00C /* Neil Woo03.jpg in Resources */,
 				F6802EEC20E90EF900BEC00C /* Assets.xcassets in Resources */,
 				F6802EEA20E90EF700BEC00C /* Main.storyboard in Resources */,
 			);
@@ -140,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6802EE720E90EF700BEC00C /* ViewController.swift in Sources */,
+				F6802F0020E915E700BEC00C /* MBProgressHUD.m in Sources */,
 				F6802EE320E90EF700BEC00C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +313,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34KC4VR7Y2;
 				INFOPLIST_FILE = FurnitureAR/Info.plist;
@@ -293,6 +323,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lanefaison.FurnitureAR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FurnitureAR/FurnitureAR-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -302,6 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34KC4VR7Y2;
 				INFOPLIST_FILE = FurnitureAR/Info.plist;
@@ -311,6 +344,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lanefaison.FurnitureAR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FurnitureAR/FurnitureAR-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
