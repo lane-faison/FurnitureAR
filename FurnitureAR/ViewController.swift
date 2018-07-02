@@ -8,6 +8,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     private var hud: MBProgressHUD!
     
+    private var currentAngleY: Float = 0.0
+    private var newAngleY: Float = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +64,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 }
 
-// Gesture Recognizers
+// Gesture Recognizers: Tapping, Pinching, Panning
 extension ViewController {
     private func registerGestureRecognizers() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -69,18 +72,20 @@ extension ViewController {
         
         let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinched))
         self.sceneView.addGestureRecognizer(pinchGestureRecognizer)
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panned))
+        self.sceneView.addGestureRecognizer(panGestureRecognizer)
     }
     
     @objc private func tapped(recognizer: UITapGestureRecognizer) {
         guard let sceneView = recognizer.view as? ARSCNView else { return }
         
         let touch = recognizer.location(in: sceneView)
-        
         let hitTestResults = sceneView.hitTest(touch, types: .existingPlane)
         
         if let hitTest = hitTestResults.first {
             guard let chairScene = SCNScene(named: "chair.dae"),
-                let chairNode = chairScene.rootNode.childNode(withName: "chair", recursively: true) else { return }
+                let chairNode = chairScene.rootNode.childNode(withName: "parentNode", recursively: true) else { return }
             
             // Gets the position of the touch in the 3D coordinate plane
             chairNode.position = SCNVector3(hitTest.worldTransform.columns.3.x, hitTest.worldTransform.columns.3.y, hitTest.worldTransform.columns.3.z)
@@ -94,7 +99,6 @@ extension ViewController {
             guard let sceneView = recognizer.view as? ARSCNView else { return }
             
             let touch = recognizer.location(in: sceneView)
-            
             let hitTestResults = self.sceneView.hitTest(touch, options: nil)
             
             if let hitTest = hitTestResults.first {
@@ -108,6 +112,32 @@ extension ViewController {
                 recognizer.scale = 1
             }
             
+        }
+    }
+    
+    @objc private func panned(recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .changed:
+            guard let sceneView = recognizer.view as? ARSCNView else { return }
+            
+            let touch = recognizer.location(in: sceneView)
+            let translation = recognizer.translation(in: sceneView)
+            let hitTestResults = self.sceneView.hitTest(touch, options: nil)
+            
+            if let hitTest = hitTestResults.first {
+                if let parentNode = hitTest.node.parent {
+                    // Just grabbing the translation.x makes it so that the object can only be rotated horizontally.
+                    // If you investigate the eulerAngles in the chair.dae file, you will see how the eulerAngles affect
+                    // the rotation of the chair.
+                    self.newAngleY = Float(translation.x) * Float(Double.pi / 180)
+                    self.newAngleY += self.currentAngleY
+                    parentNode.eulerAngles.y = self.newAngleY
+                }
+            }
+        case .ended:
+            self.currentAngleY = self.newAngleY
+        default:
+            return
         }
     }
 }
