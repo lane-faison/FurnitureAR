@@ -10,6 +10,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     private var currentAngleY: Float = 0.0
     private var newAngleY: Float = 0.0
+    private var localTranslationPosition: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,9 @@ extension ViewController {
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panned))
         self.sceneView.addGestureRecognizer(panGestureRecognizer)
+        
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
+        self.sceneView.addGestureRecognizer(longPressGestureRecognizer)
     }
     
     @objc private func tapped(recognizer: UITapGestureRecognizer) {
@@ -138,6 +142,30 @@ extension ViewController {
             self.currentAngleY = self.newAngleY
         default:
             return
+        }
+    }
+    
+    @objc private func longPressed(recognizer: UILongPressGestureRecognizer) {
+        guard let sceneView = recognizer.view as? ARSCNView else { return }
+        
+        let touch = recognizer.location(in: sceneView)
+        let hitTestResults = self.sceneView.hitTest(touch, options: nil)
+        
+        if let hitTest = hitTestResults.first {
+            if let parentNode = hitTest.node.parent {
+                switch recognizer.state {
+                case .began:
+                    localTranslationPosition = touch
+                case .changed:
+                    let deltaX = Float(touch.x - localTranslationPosition.x) / 700
+                    let deltaY = Float(touch.y - localTranslationPosition.y) / 700
+                    
+                    parentNode.localTranslate(by: SCNVector3(deltaX, 0.0, deltaY))
+                    self.localTranslationPosition = touch
+                default:
+                    return
+                }
+            }
         }
     }
 }
